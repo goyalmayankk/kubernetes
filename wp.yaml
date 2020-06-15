@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: wordpress
+spec:
+  containers:
+    - name: wp
+      image: wordpress
+      ports:
+        - containerPort: 80
+      env:
+        - name: "WORDPRESS_DB_HOST"
+          value: "172.17.0.7"
+
+        - name: "WORDPRESS_DB_USER"
+          value: "root"
+
+        - name: "WORDPRESS_DB_PASSWORD"
+          value: "redhat"
+
+        - name: "WORDPRESS_DB_NAME"
+          value: "mayank"

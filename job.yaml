@@ -1,0 +1,15 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sample-job
+spec:
+  completions: 7
+  parallelism: 3
+  template:
+    spec:
+      containers:
+        - name: busybox
+          image: alpine
+          command: ["/bin/sleep"]
+          args: ["10"]
+      restartPolicy: Never

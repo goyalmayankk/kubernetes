@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  labels:
+    app: redis
+    pod-template-hash: d6c8c987b
+  managedFields:
+  - apiVersion: apps/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+    manager: kube-controller-manager
+    operation: Update
+    time: "2020-06-08T06:33:10Z"
+  name: redis-d6c8c987b
+  namespace: default
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: redis
+      pod-template-hash: d6c8c987b
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: redis
+        pod-template-hash: d6c8c987b
+    spec:
+      containers:
+      - image: redis:alpine
+        imagePullPolicy: IfNotPresent
+        name: redis
+        ports:
+        - containerPort: 6379
+          name: redis
+          protocol: TCP
+

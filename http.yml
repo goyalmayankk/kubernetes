@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: n1
+ namespace: mayank
+spec:
+  containers:
+   - name: httpd
+     image: centos/httpd
+     ports:
+      - containerPort: 80

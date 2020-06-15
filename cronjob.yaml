@@ -1,0 +1,18 @@
+kind:     CronJob
+apiVersion:  batch/v1beta1
+metadata:
+  name: sample-cron-job
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      completions: 5
+      parallelism: 2
+      template:
+        spec:
+          containers:
+            - name: cont
+              image: alpine
+              command: ["/bin/sleep"]
+              args: ["180"]
+          restartPolicy: Never

@@ -1,0 +1,16 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: sleep-job
+spec:
+  schedule: "*/2 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: sleep
+              image: alpine
+              command: ["/bin/sleep"]
+              args: ["300"]
+          restartPolicy: Never

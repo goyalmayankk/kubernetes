@@ -1,0 +1,16 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: init-example
+spec:
+  containers:
+    - name: alpine
+      image: alpine
+      command: ["/bin/sleep"]
+      args: ["30"]
+
+  initContainers:
+    - name: web
+      image: centos/httpd
+      ports:
+       - containerPort: 80
