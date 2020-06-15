@@ -19,6 +19,6 @@ spec:
         app: proxy
     spec:
       containers:
-      - image: nignx:1.9
-        name: nignx
+      - image: nginx:1.9
+        name: nginx
         
