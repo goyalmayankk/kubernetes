@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: nfs-pod
+  name: nfs-pod
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nfs-pod
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: nfs-pod
+    spec:
+      containers:
+      - image: centos
+        name: centos7
+        volumeMounts:
+        - mountPath: /tmp
+          name: nfs
+        imagePullPolicy: IfNotPresent
+        command: 
+          - sleep
+          - "36000"
+      volumes:
+      - name: nfs
+        persistentVolumeClaim:
+          claimName: nfs-pvc
