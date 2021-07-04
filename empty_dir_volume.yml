@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: volume
+spec:
+  containers:
+    - name: centos1
+      image: centos:7
+      command:
+        - "sleep"
+        - "3600"
+      volumeMounts:
+        - name: test
+          mountPath: /var
+    - name: centos2
+      image: centos:7
+      command:
+        - "sleep"
+        - "3600"
+      volumeMounts:
+        - name: test
+          mountPath: /var
+
+  volumes:
+    - emptyDir: {}
+      name: test

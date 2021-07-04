@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: taint
+spec:
+  tolerations:
+    - key: mayank1
+      value: goyal
+      effect: NoSchedule
+  containers:
+    - name: container
+      image: busybox
+      imagePullPolicy: IfNotPresent
+      command: ['sh', '-c', 'while true; do echo "hi"; done']
