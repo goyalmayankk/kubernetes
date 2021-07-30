@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: hostvolume
+  name: hostvolume
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hostvolume
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hostvolume
+    spec:
+      containers:
+      - image: httpd
+        name: httpd
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - name: host
+            mountPath: /var/www
+      volumes:
+      - name: host
+        persistentVolumeClaim:
+         claimName: hostvolume    
+status: {}
+

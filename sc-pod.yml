@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: scdep
+  name: scdep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: scdep
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: scdep
+    spec:
+      containers:
+      - command:
+        - sleep
+        - "10000"
+        image: busybox
+        name: busybox
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - name: sc
+            mountPath: /var
+
+      volumes:
+      - name: sc
+        persistentVolumeClaim:
+          claimName: pvc-sc

@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: myservice
+  name: myservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: myservice
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: myservice
+    spec:
+      initContainers:
+      - image: busybox
+        imagePullPolicy: IfNotPresent
+        name: busy1
+        command: ["/bin/sh", "-c", "until nslookup myservice; do sleep 2; done"]
+      containers:
+      - image: busybox
+        imagePullPolicy: IfNotPresent
+        name: busybox
+        command:
+          - sleep
+          - "9000"
+        resources: {}
+status: {}
+
